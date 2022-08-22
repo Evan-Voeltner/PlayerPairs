@@ -19,6 +19,16 @@ def GetSuffledDeck():
 def DealCard(given_deck):
     return given_deck.pop()
 
-# print(GetSuffledDeck())
+def GetPlayers():
+    number_of_players = input('How many players are there?: ')
+    list_of_players = []
 
-print(DealCard(GetSuffledDeck()))
+    for player in range(int(number_of_players)):
+        new_player = {
+            'player_number' : str(player),
+            'player_hand' : [],
+            'number_of_pairs' : 0
+        }
+        list_of_players.append(new_player)
+
+    return list_of_players
