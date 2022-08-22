@@ -16,4 +16,9 @@ def GetSuffledDeck():
 
     return shuffled_deck
 
-print(GetSuffledDeck())
+def DealCard(given_deck):
+    return given_deck.pop()
+
+# print(GetSuffledDeck())
+
+print(DealCard(GetSuffledDeck()))
