@@ -77,13 +77,16 @@ def FindWinner(given_list_of_players):
             winner_numbers.append(int(order_of_pairs[player_index][1:]))
         else:
             break
-        
+    
+    winner_numbers.sort()
+
     if len(winner_numbers) == 1:
         return(f'The winner is Player {winner_numbers[0]}!')
     else:
-        final_string = 'The winners are, '
+        final_string = 'The players who tied are: '
         for winner_number in winner_numbers:
-            final_string += f'Player {winner_number} '
+            final_string += f'''
+Player {winner_number} '''
         return final_string
 
 
@@ -101,6 +104,6 @@ def RunGame():
         players_list[player_index] = FindPairs(players_list[player_index])
         print(players_list[player_index])
 
-    FindWinner(players_list)
+    print(FindWinner(players_list))
 
 RunGame()
