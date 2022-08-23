@@ -102,7 +102,7 @@ def RunGame():
     for round in range(number_of_rounds):
         deck = GetSuffledDeck()
         players_list = GetPlayers(number_of_players)
-        for delt in range(4):
+        for delt in range(5):
             for player_num in range(1, len(players_list)+1):
                 new_card = GetCard(deck)
                 current_player = players_list[player_num-1]
