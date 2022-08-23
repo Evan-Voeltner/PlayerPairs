@@ -52,15 +52,12 @@ def FindPairs(given_player):
                 break
             if current_hand[first_card_index] == current_hand[second_card_index]:
                 total_pairs += 1
-    
     given_player.update({'number_of_pairs' : total_pairs})
-    
     return given_player
 
 def RunGame():
     deck = GetSuffledDeck()
-    players_list = GetPlayers() 
-    print(players_list)
+    players_list = GetPlayers()
     for delt in range(4):
         for player_num in range(1, len(players_list)+1):
             new_card = GetCard(deck)
@@ -71,11 +68,5 @@ def RunGame():
     for player_index in range(len(players_list)):
         players_list[player_index] = FindPairs(players_list[player_index])
         print(players_list[player_index])
-    
-        
-
-
-    
-
 
 RunGame()
