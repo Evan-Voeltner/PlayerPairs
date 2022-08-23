@@ -19,11 +19,10 @@ def GetSuffledDeck():
 def GetCard(given_deck):
     return given_deck.pop()
 
-def GetPlayers():
-    number_of_players = input('How many players are there?: ')
+def GetPlayers(given_number_of_players):
     list_of_players = []
 
-    for player in range(1,int(number_of_players)+1):
+    for player in range(1,int(given_number_of_players)+1):
         new_player = {
             'player_number' : player,
             'player_hand' : [],
@@ -97,21 +96,25 @@ Player {winner_number} '''
 
 
 def RunGame():
-    deck = GetSuffledDeck()
-    players_list = GetPlayers()
-    for delt in range(4):
-        for player_num in range(1, len(players_list)+1):
-            new_card = GetCard(deck)
-            current_player = players_list[player_num-1]
-            updated_player = DealCard(current_player, new_card)
-            players_list[player_num-1] = updated_player
-
-    for player_index in range(len(players_list)):
-        players_list[player_index] = FindPairs(players_list[player_index])
-
-    for player in players_list:
-        print(PrintPlayerInfo(player))
+    number_of_players = int(input('How many players are there?: '))
+    number_of_rounds = int(input('How many rounds do you want to play?: '))
     
-    print(FindWinner(players_list))
+    for round in range(number_of_rounds):
+        deck = GetSuffledDeck()
+        players_list = GetPlayers(number_of_players)
+        for delt in range(4):
+            for player_num in range(1, len(players_list)+1):
+                new_card = GetCard(deck)
+                current_player = players_list[player_num-1]
+                updated_player = DealCard(current_player, new_card)
+                players_list[player_num-1] = updated_player
+
+        for player_index in range(len(players_list)):
+            players_list[player_index] = FindPairs(players_list[player_index])
+
+        for player in players_list:
+            print(PrintPlayerInfo(player))
+        
+        print(FindWinner(players_list))
 
 RunGame()
