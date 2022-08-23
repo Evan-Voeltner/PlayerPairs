@@ -1,5 +1,4 @@
 import random
-from turtle import update
 
 def GetSuffledDeck():
     unshuffled_deck = ['Ace', 'Ace', 'Ace', 'Ace', 'One', 'One', 'One', 'One',
@@ -55,6 +54,13 @@ def FindPairs(given_player):
     given_player.update({'number_of_pairs' : total_pairs})
     return given_player
 
+def PrintPlayerInfo(given_player):
+    player_num = given_player.get('player_number')
+    player_hand = given_player.get('player_hand')
+    player_pairs = given_player.get('number_of_pairs')
+
+    return f'Player {player_num} | Hand {player_hand} | Number of pairs: {player_pairs}'
+
 def FindWinner(given_list_of_players):
     order_of_pairs = []
     winner_numbers = []
@@ -102,8 +108,10 @@ def RunGame():
 
     for player_index in range(len(players_list)):
         players_list[player_index] = FindPairs(players_list[player_index])
-        print(players_list[player_index])
 
+    for player in players_list:
+        print(PrintPlayerInfo(player))
+    
     print(FindWinner(players_list))
 
 RunGame()
