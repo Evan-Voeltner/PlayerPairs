@@ -55,6 +55,38 @@ def FindPairs(given_player):
     given_player.update({'number_of_pairs' : total_pairs})
     return given_player
 
+def FindWinner(given_list_of_players):
+    order_of_pairs = []
+    winner_numbers = []
+
+    for player in given_list_of_players:
+        string_to_add = f'{str(player.get("number_of_pairs"))}{str(player.get("player_number"))}'
+        order_of_pairs.append(string_to_add)
+
+    order_of_pairs.sort(reverse = True)
+
+    highest_pair = int(list(order_of_pairs[0])[0])
+
+    if highest_pair == 0:
+        return 'There is no winner.'
+
+    for player_index in range(len(order_of_pairs)-1):
+
+        number_of_pairs = int(list(order_of_pairs[player_index])[0])
+        if number_of_pairs == highest_pair:
+            winner_numbers.append(int(order_of_pairs[player_index][1:]))
+        else:
+            break
+        
+    if len(winner_numbers) == 1:
+        return(f'The winner is Player {winner_numbers[0]}!')
+    else:
+        final_string = 'The winners are, '
+        for winner_number in winner_numbers:
+            final_string += f'Player {winner_number} '
+        return final_string
+
+
 def RunGame():
     deck = GetSuffledDeck()
     players_list = GetPlayers()
@@ -68,5 +100,7 @@ def RunGame():
     for player_index in range(len(players_list)):
         players_list[player_index] = FindPairs(players_list[player_index])
         print(players_list[player_index])
+
+    FindWinner(players_list)
 
 RunGame()
